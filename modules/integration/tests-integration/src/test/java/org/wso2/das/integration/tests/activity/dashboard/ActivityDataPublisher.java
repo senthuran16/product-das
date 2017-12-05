@@ -23,8 +23,8 @@ import org.wso2.carbon.databridge.agent.exception.DataEndpointAgentConfiguration
 import org.wso2.carbon.databridge.agent.exception.DataEndpointAuthenticationException;
 import org.wso2.carbon.databridge.agent.exception.DataEndpointConfigurationException;
 import org.wso2.carbon.databridge.agent.exception.DataEndpointException;
-import org.wso2.carbon.databridge.commons.exception.TransportException;
 import org.wso2.carbon.databridge.commons.Event;
+import org.wso2.carbon.databridge.commons.exception.TransportException;
 import org.wso2.carbon.databridge.commons.utils.DataBridgeCommonsUtils;
 
 import java.io.File;
@@ -37,7 +37,7 @@ public class ActivityDataPublisher {
 
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "admin";
-    
+
     public static final int EVENT_COUNT = 100;
 
     public ActivityDataPublisher(String url) throws DataEndpointAuthenticationException, DataEndpointAgentConfigurationException,
@@ -83,6 +83,14 @@ public class ActivityDataPublisher {
         }
     }
 
+    public void publishEvent(String streamName, String version, String activityId) throws DataEndpointException, InterruptedException {
+        String streamId = DataBridgeCommonsUtils.generateStreamId(streamName, version);
+        Event event = new Event(streamId, System.currentTimeMillis(), getMetadata(), new Object[]{activityId},
+                getSimplePayloadData());
+        dataPublisher.publish(event);
+    }
+
+
     public void shutdown() throws DataEndpointException {
         dataPublisher.shutdown();
     }
@@ -102,7 +110,7 @@ public class ActivityDataPublisher {
     }
 
     private Object[] getCorrelationdata(List<String> activityIds) {
-        return new Object[] {
+        return new Object[]{
                 "[" + activityIds.get(getRandomId(activityIds.size())) + "]"
         };
     }
@@ -111,6 +119,18 @@ public class ActivityDataPublisher {
         return new Object[]{
                 "<soapenv:body xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><m0:getfullquote xmlns:m0=\"http://services.samples\"><m0:request><m0:symbol>aa</m0:symbol></m0:request></m0:getfullquote></soapenv:body>",
                 "<soapenv:header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><wsa:to>https://my:8244/services/Simple_Stock_Quote_Service_Proxy</wsa:to><wsa:messageid>urn:uuid:c70bae36-b163-4f3e-a341-d7079c58f1ba</wsa:messageid><wsa:action>urn:getFullQuote</wsa:action><ns:bamevent activityid=\"6cecbb16-6b89-46f3-bd2f-fd9f7ac447b6\" xmlns:ns=\"http://wso2.org/ns/2010/10/bam\"></ns:bamevent></soapenv:header>",
+                "IN",
+                "urn:uuid:c70bae36-b163-4f3e-a341-d7079c58f1ba",
+                "mediate",
+                "Simple_Stock_Quote_Service_Proxy",
+                System.currentTimeMillis()
+        };
+    }
+
+    private static Object[] getSimplePayloadData() {
+        return new Object[]{
+                "Body",
+                "Header",
                 "IN",
                 "urn:uuid:c70bae36-b163-4f3e-a341-d7079c58f1ba",
                 "mediate",

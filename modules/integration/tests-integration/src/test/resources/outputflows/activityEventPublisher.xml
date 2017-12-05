@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventPublisher name="activityEventPublisher" statistics="disable"
+  trace="disable" xmlns="http://wso2.org/carbon/eventpublisher">
+  <from streamName="org.wso2.cep.activity.monitoring.stream" version="1.0.0"/>
+  <mapping customMapping="disable" type="map"/>
+  <to eventAdapterType="rdbms">
+    <property name="datasource.name">WSO2CEP_DB</property>
+    <property name="update.keys">message_id</property>
+    <property name="execution.mode">insert</property>
+    <property name="table.name">activityData</property>
+    <property name="attributes.with.type">meta_character_set_encoding:string,meta_host:string,meta_http_method:string,meta_message_type:string,meta_remote_address:string,meta_remote_host:string,meta_service_prefix:string,meta_tenant_id:int,meta_transport_in_url:string,correlation_activity_id:string,SOAPBody:string,SOAPHeader:string,message_direction:string,message_id:string,operation_name:string,service_name:string,timestamp:long</property>
+  </to>
+</eventPublisher>

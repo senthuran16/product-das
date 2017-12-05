@@ -277,6 +277,31 @@
                 <artifactId>org.jacoco.agent</artifactId>
                 <version>${jacoco.agent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.analytics-common</groupId>
+                <artifactId>org.wso2.carbon.event.publisher.stub</artifactId>
+                <version>${carbon.analytics.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.event-processing</groupId>
+                <artifactId>org.wso2.carbon.event.simulator.stub</artifactId>
+                <version>${carbon.event-processing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.analytics-common</groupId>
+                <artifactId>org.wso2.carbon.event.stream.stub</artifactId>
+                <version>${carbon.analytics.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${awaitility.version}</version>
+            </dependency>
             <!-- END - Integration test dependencies -->
 
             <!-- START - MT Dashboard-->
@@ -487,6 +512,8 @@
         <geoip.api.version>1.2.15</geoip.api.version>
 
         <vizgrammar.version>2.0.0</vizgrammar.version>
+        <h2.version>1.2.147</h2.version>
+        <awaitility.version>3.0.0</awaitility.version>
 
         <project.scm.id>my-scm-server</project.scm.id>
     </properties>
