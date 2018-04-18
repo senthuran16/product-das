@@ -222,18 +222,11 @@ public class ActivityDashboardTestCase extends DASIntegrationTest {
     public void searchWithTimeRange() throws InvalidExpressionNodeException, IOException,
             ActivityDashboardAdminServiceActivityDashboardExceptionException {
         ActivitySearchRequest searchRequest = new ActivitySearchRequest();
-        Calendar calendar = Calendar.getInstance();
-        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-        calendar.set(Calendar.HOUR_OF_DAY, currentHour + 1);
-        searchRequest.setToTime(calendar.getTimeInMillis());
-        if (currentHour == 0) {
-            //reducing two hours from to time
-            searchRequest.setFromTime(calendar.getTimeInMillis() - 2*60*60*1000);
-        }
-        else {
-            calendar.set(Calendar.HOUR_OF_DAY, currentHour - 1);
-            searchRequest.setFromTime(calendar.getTimeInMillis());
-        }
+        long currentTime = System.currentTimeMillis();
+        //set two hour time frame
+        searchRequest.setToTime(currentTime + 60 * 60 * 1000);
+        searchRequest.setFromTime(currentTime - 60 * 60 * 1000);
+
         SearchExpressionTree searchExpressionTree = new SearchExpressionTree();
         Query query = new Query("0", "ORG_WSO2_BAM_ACTIVITY_MONITORING", "meta_remote_host:\"localhost\" AND meta_http_method :\"POST\"");
         searchExpressionTree.setRoot(query);
