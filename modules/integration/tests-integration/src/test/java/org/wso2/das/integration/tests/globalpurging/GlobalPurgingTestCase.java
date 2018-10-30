@@ -18,6 +18,8 @@
 
 package org.wso2.das.integration.tests.globalpurging;
 
+import org.awaitility.Awaitility;
+import org.awaitility.Duration;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -127,7 +129,7 @@ public class GlobalPurgingTestCase extends DASIntegrationTest {
         for (EventBean eventBean : eventBeans) {
             webServiceClient.publishEvent(eventBean);
         }
-        Thread.sleep(2000);
+        waitTillGetByRange(webServiceClient, 25, Duration.ONE_MINUTE);
         Assert.assertEquals(webServiceClient.getByRange(SOMETABLE_PATTERN1_TABLE1.replace('.', '_'), 0, System.
                 currentTimeMillis(), 0, 100).length, 25, "Record count is incorrect");
         Assert.assertEquals(webServiceClient.getByRange(SOMETABLE_PATTERN1_TABLE2.replace('.', '_'), 0, System
@@ -166,6 +168,15 @@ public class GlobalPurgingTestCase extends DASIntegrationTest {
         Assert.assertEquals(webServiceClient.getByRange(RANDOM_TABLE_2.replace('.', '_'), 0, System
                 .currentTimeMillis(), 0, 100).length, 25, "Record count is incorrect");
 
+    }
+
+    private void waitTillGetByRange(AnalyticsWebServiceClient webServiceClient,
+                                              long expected, Duration duration) {
+        Awaitility.await().atMost(duration).until(() -> {
+            return webServiceClient.getByRange(SOMETABLE_PATTERN1_TABLE1.replace('.',
+                    '_'), 0, System.currentTimeMillis(), 0, 100).length
+                    == expected;
+        });
     }
 
     private List<EventBean> getEventBeans(StreamDefinitionBean streamDefinitionBean) {
