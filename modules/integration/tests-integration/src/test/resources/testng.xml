@@ -8,7 +8,6 @@
             <package name="org.wso2.das.integration.tests.capp"/>
             <package name="org.wso2.das.integration.tests.sessionTimeoutExceptionTest"/>
             <package name="org.wso2.das.integration.tests.activity.dashboard"/>
-            <package name="org.wso2.das.integration.tests.restservice.analytics"/>
             <package name="org.wso2.das.integration.tests.analytics.execution"/>
             <package name="org.wso2.das.integration.tests.analyticsapi"/>
             <package name="org.wso2.das.integration.tests.eventstreampersist"/>
