@@ -41,6 +41,7 @@ import org.wso2.das.integration.common.utils.DASIntegrationTest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class GlobalPurgingTestCase extends DASIntegrationTest {
 
@@ -170,12 +171,15 @@ public class GlobalPurgingTestCase extends DASIntegrationTest {
 
     }
 
-    private void waitTillGetByRange(AnalyticsWebServiceClient webServiceClient,
-                                              long expected, Duration duration) {
-        Awaitility.await().atMost(duration).until(() -> {
-            return webServiceClient.getByRange(SOMETABLE_PATTERN1_TABLE1.replace('.',
-                    '_'), 0, System.currentTimeMillis(), 0, 100).length
-                    == expected;
+    private void waitTillGetByRange(final AnalyticsWebServiceClient webServiceClient,
+                                    final long expected, Duration duration) {
+        Awaitility.await().atMost(duration).until(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return webServiceClient.getByRange(SOMETABLE_PATTERN1_TABLE1.replace('.',
+                        '_'), 0, System.currentTimeMillis(), 0, 100).length
+                        == expected;
+            }
         });
     }
 
