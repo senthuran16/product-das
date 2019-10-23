@@ -1,20 +1,20 @@
 /*
-* Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
-*
-* WSO2 Inc. licenses this file to you under the Apache License,
-* Version 2.0 (the "License"); you may not use this file except
-* in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing,
-* software distributed under the License is distributed on an
-* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-* KIND, either express or implied.  See the License for the
-* specific language governing permissions and limitations
-* under the License.
-*/
+ * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 package org.wso2.das.integration.tests.restservice.analytics;
 
 import com.google.gson.Gson;
@@ -75,14 +75,14 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
     private static final String INDICES = "indexData";
     private static final long ONE_HOUR_MILLISECOND = 3600000;
     private static final Gson gson = new Gson();
-//    private AnalyticsSchemaBean schemaBean;
+    //    private AnalyticsSchemaBean schemaBean;
     private Map<String, String> headers;
     private Map<String, Object> updateValueSet1, valueSet1;
     private Map<String, Object> updateValueSet2, valueSet2;
     private RecordBean record1;
     private RecordBean record2;
-  /*  private RecordBean record3;
-    private RecordBean record4;*/
+    /*  private RecordBean record3;
+      private RecordBean record4;*/
     AnalyticsDataAPI analyticsDataAPI;
 
     @BeforeClass(alwaysRun = true)
@@ -103,36 +103,36 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         schemaBean = new AnalyticsSchemaBean(indices, null);*/
 //        Map<String, Object> valueSet1 = new LinkedHashMap<>();
         valueSet1 = new LinkedHashMap<>();
-		valueSet1.put("key1@", "@value1");
-		valueSet1.put("key2@", "@value2");
-		valueSet1.put("key3", "value3");
-		valueSet1.put("key4@", "@value4");
-		valueSet1.put("key5@", "@value5");
+        valueSet1.put("key1@", "@value1");
+        valueSet1.put("key2@", "@value2");
+        valueSet1.put("key3", "value3");
+        valueSet1.put("key4@", "@value4");
+        valueSet1.put("key5@", "@value5");
 //        Map<String, Object> valueSet2 = new LinkedHashMap<>();
         valueSet2 = new LinkedHashMap<>();
-		valueSet2.put("key7@", "@value1");
-		valueSet2.put("key6@", "@value2");
-		valueSet2.put("key9@", "@value3");
-		valueSet2.put("key0@", "@value4");
-		valueSet2.put("key4@", "@value5");
-		updateValueSet1 = new LinkedHashMap<>();
-		updateValueSet1.put("updatedkey7@", "updated@value1");
-		updateValueSet1.put("updatedkey6@", "updated@value2");
-		updateValueSet1.put("IndexedKey", "IndexedValue");
-		updateValueSet1.put("updatedkey0@", "updated@value4");
-		updateValueSet1.put("updatedkey4@", "updated@value5");
-		updateValueSet2 = new LinkedHashMap<>();
-		updateValueSet2.put("key1@", "@value1");
-		updateValueSet2.put("key2@", "@value2");
-		updateValueSet2.put("key3", "value3");
-		updateValueSet2.put("key4@", "@value4");
-		updateValueSet2.put("key5@", "@value5");
-		record1 = new RecordBean();
-		record1.setTableName(TABLE_NAME);
-		record1.setValues(valueSet1);
-		record2 = new RecordBean();
-		record2.setTableName(TABLE_NAME);
-		record2.setValues(valueSet2);
+        valueSet2.put("key7@", "@value1");
+        valueSet2.put("key6@", "@value2");
+        valueSet2.put("key9@", "@value3");
+        valueSet2.put("key0@", "@value4");
+        valueSet2.put("key4@", "@value5");
+        updateValueSet1 = new LinkedHashMap<>();
+        updateValueSet1.put("updatedkey7@", "updated@value1");
+        updateValueSet1.put("updatedkey6@", "updated@value2");
+        updateValueSet1.put("IndexedKey", "IndexedValue");
+        updateValueSet1.put("updatedkey0@", "updated@value4");
+        updateValueSet1.put("updatedkey4@", "updated@value5");
+        updateValueSet2 = new LinkedHashMap<>();
+        updateValueSet2.put("key1@", "@value1");
+        updateValueSet2.put("key2@", "@value2");
+        updateValueSet2.put("key3", "value3");
+        updateValueSet2.put("key4@", "@value4");
+        updateValueSet2.put("key5@", "@value5");
+        record1 = new RecordBean();
+        record1.setTableName(TABLE_NAME);
+        record1.setValues(valueSet1);
+        record2 = new RecordBean();
+        record2.setTableName(TABLE_NAME);
+        record2.setValues(valueSet2);
 	/*	record3 = new RecordBean();
 		record3.setTableName(TABLE_NAME);
 		record3.setValues(valueSet1);
@@ -170,7 +170,7 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
     public void tableExists() throws Exception {
         log.info("Executing Table Exist test case ...");
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_ENDPOINT_URL +
-                                            TestConstants.TABLE_EXISTS + TABLE_NAME, headers);
+                TestConstants.TABLE_EXISTS + TABLE_NAME, headers);
         log.info("Response: " + response.getData());
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         ResponseBean responseBean = gson.fromJson(response.getData(), ResponseBean.class);
@@ -182,7 +182,7 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
     public void tableNotExist() throws Exception {
         log.info("Executing TableNotExist test case ...");
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_ENDPOINT_URL +
-                                            TestConstants.TABLE_EXISTS + TABLE_NAME2, headers);
+                TestConstants.TABLE_EXISTS + TABLE_NAME2, headers);
         log.info("Response: " + response.getData());
         Assert.assertEquals(response.getResponseCode(), 404, "Status code is different");
         ResponseBean responseBean = gson.fromJson(response.getData(), ResponseBean.class);
@@ -203,7 +203,7 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
 
     /*@Test(groups = "wso2.das", description = "Create table schema", dependsOnMethods = "createTable")
     public void setTableSchema() throws Exception {
-        log.info("Executing createTableSchema test case ...");
+        log.igit stnfo("Executing createTableSchema test case ...");
         URL restUrl = new URL(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL + TABLE_NAME + TestConstants.SCHEMA);
         HttpResponse response = HttpRequestUtil.doPost(restUrl, gson.toJson(schemaBean), headers);
         log.info("Response: " + response.getData());
@@ -234,7 +234,7 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
     public void getTableSchema() throws Exception {
         log.info("Executing getTableSchema test case ...");
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL +
-                                            TABLE_NAME + TestConstants.SCHEMA, headers);
+                TABLE_NAME + TestConstants.SCHEMA, headers);
         log.info("Response: " + response.getData());
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         AnalyticsSchemaBean responseBean = gson.fromJson(response.getData(), AnalyticsSchemaBean.class);
@@ -330,12 +330,12 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         log.info("Executing get records without pagination test case ...");
         long currentTime = System.currentTimeMillis();
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL + TABLE_NAME + "/" +
-                                            (currentTime - ONE_HOUR_MILLISECOND) + "/" +
-                                            (currentTime + ONE_HOUR_MILLISECOND), headers);
+                (currentTime - ONE_HOUR_MILLISECOND) + "/" +
+                (currentTime + ONE_HOUR_MILLISECOND), headers);
         Type listType = new TypeToken<List<RecordBean>>(){}.getType();
         List< RecordBean> recordList = gson.fromJson(response.getData(), listType);
-		Assert.assertEquals(recordList.size(), 4,
-                            "Size mismatch!");
+        Assert.assertEquals(recordList.size(), 4,
+                "Size mismatch!");
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         for (RecordBean bean : recordList) {
             if (bean.getId().equals("id1")) {
@@ -353,10 +353,10 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         log.info("Executing get records with pagination test case ...");
         long currentTime = System.currentTimeMillis();
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL + TABLE_NAME +
-                                            "/" +
-                                            (currentTime - ONE_HOUR_MILLISECOND) + "/" +
-                                            (currentTime + ONE_HOUR_MILLISECOND) + "/" +
-                                            "0" + "/" + "2", headers);
+                "/" +
+                (currentTime - ONE_HOUR_MILLISECOND) + "/" +
+                (currentTime + ONE_HOUR_MILLISECOND) + "/" +
+                "0" + "/" + "2", headers);
         log.info("Response: " + response.getData());
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         Type listType = new TypeToken<List<RecordBean>>(){}.getType();
@@ -376,12 +376,12 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
 
         log.info("Executing get All records test case ...");
         HttpResponse response = Utils.doGet(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL +
-                                            TABLE_NAME, headers);
+                TABLE_NAME, headers);
         Type listType = new TypeToken<List<RecordBean>>(){}.getType();
         List< RecordBean> recordList = gson.fromJson(response.getData(), listType);
         log.info("Response :" + response.getData());
-		Assert.assertEquals(recordList.size(), 4,
-                            "Size mismatch!");
+        Assert.assertEquals(recordList.size(), 4,
+                "Size mismatch!");
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         for (RecordBean bean : recordList) {
             if (bean.getId().equals("id1")) {
@@ -431,11 +431,11 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
 
         log.info("Executing insertRecordsInTable test case ...");
         updateValueSet1 = new LinkedHashMap<>();
-		updateValueSet1.put("newKey1", "new Value1");
-		updateValueSet1.put("newKey2", "new Value2");
-		updateValueSet2 = new LinkedHashMap<>();
-		updateValueSet2.put("newKey3", "new value3");
-		updateValueSet2.put("newKey4", "new value4");
+        updateValueSet1.put("newKey1", "new Value1");
+        updateValueSet1.put("newKey2", "new Value2");
+        updateValueSet2 = new LinkedHashMap<>();
+        updateValueSet2.put("newKey3", "new value3");
+        updateValueSet2.put("newKey4", "new value4");
         List<Record> records = new ArrayList<>();
         records.add(new Record("id3", MultitenantConstants.SUPER_TENANT_ID, TABLE_NAME, updateValueSet1));
         records.add(new Record("id4", MultitenantConstants.SUPER_TENANT_ID, TABLE_NAME, updateValueSet2));
@@ -501,7 +501,7 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         log.info("Executing deleteRecordsByTimeRange test case ...");
         long currentTime = System.currentTimeMillis();
         analyticsDataAPI.delete(MultitenantConstants.SUPER_TENANT_ID, TABLE_NAME,
-                                currentTime - ONE_HOUR_MILLISECOND, currentTime + ONE_HOUR_MILLISECOND);
+                currentTime - ONE_HOUR_MILLISECOND, currentTime + ONE_HOUR_MILLISECOND);
     }
 
     @Test(groups = "wso2.das", description = "Add records which have facet fields", dependsOnMethods = "deleteRecordsByTimeRange")
@@ -602,14 +602,25 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         request.setRecordCount(1);
         request.setCategories(paths);
         String postBody = gson.toJson(request);
-        HttpResponse response = HttpRequestUtil.doPost(restUrl, postBody, headers);
-        Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
-        Assert.assertFalse(response.getData().contains("[]"));
-        Type listType = new TypeToken<List<RecordBean>>(){}.getType();
-        List< RecordBean> recordList = gson.fromJson(response.getData(), listType);
-        Assert.assertTrue(recordList.size() == 1);
-        Assert.assertTrue(recordList.get(0).getValue("facet").equals("SriLanka,Colombo"));
-        Assert.assertTrue(recordList.get(0).getValue("key1@").equals("@value1"));
+        boolean codeOK = false;
+        int counter = 0;
+        while (!codeOK) {
+            HttpResponse response = HttpRequestUtil.doPost(restUrl, postBody, headers);
+            codeOK = (response.getResponseCode() == 200) && !response.getData().contains("[]");
+            if (!codeOK) {
+                Thread.sleep(2000L);
+            }
+            if (counter == 10) {
+                Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
+                Assert.assertFalse(response.getData().contains("[]"));
+                Type listType = new TypeToken<List<RecordBean>>(){}.getType();
+                List< RecordBean> recordList = gson.fromJson(response.getData(), listType);
+                Assert.assertTrue(recordList.size() == 1);
+                Assert.assertTrue(recordList.get(0).getValue("facet").equals("SriLanka,Colombo"));
+                Assert.assertTrue(recordList.get(0).getValue("key1@").equals("@value1"));
+            }
+            counter++;
+        }
     }
 
     @Test(groups = "wso2.das", description = "drilldown Count",
@@ -846,13 +857,13 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
         long currentTime = System.currentTimeMillis();
         HttpResponse response;
         int n = AnalyticsDataServiceUtils.listRecords(analyticsDataAPI, analyticsDataAPI.get(MultitenantConstants.SUPER_TENANT_ID, TABLE_NAME,
-                                                                                           1, null, currentTime - ONE_HOUR_MILLISECOND, currentTime + ONE_HOUR_MILLISECOND, 0, -1)).size();
+                1, null, currentTime - ONE_HOUR_MILLISECOND, currentTime + ONE_HOUR_MILLISECOND, 0, -1)).size();
         Assert.assertEquals(n, 4);
         analyticsDataAPI.clearIndexData(MultitenantConstants.SUPER_TENANT_ID, TABLE_NAME);
         List<SearchResultEntry> ids = analyticsDataAPI.search(MultitenantConstants.SUPER_TENANT_ID,TABLE_NAME, "*:*", 0, 100, null);
         Assert.assertEquals(ids.size(), 0, "Indices are not cleared..");
         URL restUrl = new URL(TestConstants.ANALYTICS_REINDEX_ENDPOINT_URL + TABLE_NAME + "?from=" +
-                              (currentTime - ONE_HOUR_MILLISECOND) + "&to=" + (currentTime + ONE_HOUR_MILLISECOND));
+                (currentTime - ONE_HOUR_MILLISECOND) + "&to=" + (currentTime + ONE_HOUR_MILLISECOND));
         response = HttpRequestUtil.doPost(restUrl, gson.toJson(null), headers);
         Assert.assertEquals(response.getResponseCode(), 200, "Status code is different");
         boolean codeOK = false;
@@ -871,22 +882,22 @@ public class AnalyticsRestTestCase extends DASIntegrationTest {
     }
 
     @Test(groups = "wso2.das", description = "clear indexData in a specific table"
-    		, dependsOnMethods = "reIndex")
+            , dependsOnMethods = "reIndex")
     public void clearIndices() throws Exception {
 
         log.info("Executing clearIndices test case ...");
         HttpClient httpClient = new DefaultHttpClient();
         HttpDeleteWithBody httpDelete = new HttpDeleteWithBody(TestConstants.ANALYTICS_TABLES_ENDPOINT_URL +
-                                                               TABLE_NAME + "/" + INDICES);
+                TABLE_NAME + "/" + INDICES);
         httpDelete.setHeader("Authorization", TestConstants.BASE64_ADMIN_ADMIN);
         org.apache.http.HttpResponse response = httpClient.execute(httpDelete);
         String responseBody = EntityUtils.toString(response.getEntity());
-		log.info("Response: " + responseBody);
-		Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Status code is different");
-		Assert.assertTrue(responseBody.contains("Successfully cleared indices"), "Record deletion by IDs failed");
-		EntityUtils.consume(response.getEntity()); //ensures the http connection is closed
+        log.info("Response: " + responseBody);
+        Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Status code is different");
+        Assert.assertTrue(responseBody.contains("Successfully cleared indices"), "Record deletion by IDs failed");
+        EntityUtils.consume(response.getEntity()); //ensures the http connection is closed
     }
-    
+
     /*@Test(groups = "wso2.das", description = "deletes a specific table"
     		, dependsOnMethods = "clearIndices")
     public void deleteTable() throws Exception {
